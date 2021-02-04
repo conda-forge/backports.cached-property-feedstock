@@ -1,5 +1,5 @@
 {% set name = "backports.cached-property" %}
-{% set version = "1.0.0" %}
+{% set version = "1.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: a7a390f4c006db13a3eb268f79dc0fd435bd0739bb570468a90979ef7b1bfce2
+  sha256: 1a5ef1e750f8bc7d0204c807aae8e0f450c655be0cf4b30407a35fd4bb27186c
 
 build:
   noarch: python
   number: 0
-  script: "{{ PYTHON }} -m pip install . -vv"
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
@@ -31,7 +31,7 @@ about:
   license: MIT
   license_family: MIT
   license_file: LICENSE
-  summary: 'Python 3.8 functools.cached_property backport to python 3.6 and 3.7'
+  summary: Python 3.8 functools.cached_property backport to python 3.6 and 3.7
   dev_url: https://github.com/penguinolog/backports.cached_property
 
 extra:
