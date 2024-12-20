@@ -5,28 +5,31 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/b/backports.cached-property/backports.cached-property-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/b/backports.cached-property/backports.cached-property-{{ version }}.tar.gz
   sha256: 9306f9eed6ec55fd156ace6bc1094e2c86fae5fb2bf07b6a9c00745c656e75dd
 
 build:
+  number: 1
   noarch: python
-  number: 0
-  script: {{ PYTHON }} -m pip install . -vv
+  script:
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation --disable-pip-version-check
 
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
+    - setuptools
     - setuptools_scm
     - wheel
   run:
-    - python >=3.6
+    - python >={{ python_min }}
     - typing >=3.6
 
 test:
   requires:
     - pip
     - m2-grep  # [win]
+    - python {{ python_min }}
   imports:
     - backports.cached_property
   commands:
